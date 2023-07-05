@@ -1,5 +1,7 @@
 package com.example.demo.rbtree;
 
+import cn.hutool.core.util.NumberUtil;
+
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -13,6 +15,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * 3.所有叶子节点（叶子节点指的是空节点）都是黑色。
  * 4.如果一个节点是红色的，则它的两个子节点都是黑色的。
  * 5.对于每个节点，从该节点到其所有后代叶子节点的简单路径上，均包含相同数量的黑色节点。
+ * link: https://tech.meituan.com/2016/12/02/redblack-tree.html
  */
 public class RBTree<T extends Comparable<T>> {
     /**
@@ -72,8 +75,24 @@ public class RBTree<T extends Comparable<T>> {
      * @return
      */
     public T addNode(T value) {
+        System.out.println("value = " + value);
         RBTreeNode<T> t = new RBTreeNode<>(value);
         return addNode(t);
+    }
+
+    public T find(T value) {
+        RBTreeNode<T> dataRoot = getRoot();
+        while (dataRoot != null) {
+            int cmp = dataRoot.getValue().compareTo(value);
+            if (cmp < 0) {
+                dataRoot = dataRoot.getRight();
+            } else if (cmp > 0) {
+                dataRoot = dataRoot.getLeft();
+            } else {
+                return dataRoot.getValue();
+            }
+        }
+        return null;
     }
 
     private T addNode(RBTreeNode<T> node) {
@@ -142,35 +161,35 @@ public class RBTree<T extends Comparable<T>> {
         return dataRoot;
     }
 
-    private void fixInsert(RBTreeNode<T> x) {
-        RBTreeNode<T> parent = x.getParent();
+    private void fixInsert(RBTreeNode<T> node) {
+        RBTreeNode<T> parent = node.getParent();
         while (parent != null && parent.isRed()) {
-            RBTreeNode<T> uncle = getUncle(x);
+            RBTreeNode<T> uncle = getUncle(node);
             if (uncle == null) {
                 RBTreeNode<T> ancestor = parent.getParent();
                 if (parent == ancestor.getLeft()) {
-                    boolean isRight = x == parent.getRight();
+                    boolean isRight = node == parent.getRight();
                     if (isRight) {
                         rotateLeft(parent);
                     }
                     rotateRight(ancestor);
 
                     if (isRight) {
-                        x.setRed(false);
+                        node.setRed(false);
                         parent = null;
                     } else {
                         parent.setRed(false);
                     }
                     ancestor.setRed(true);
                 } else {
-                    boolean isLeft = x == parent.getLeft();
+                    boolean isLeft = node == parent.getLeft();
                     if (isLeft) {
                         rotateRight(parent);
                     }
                     rotateLeft(ancestor);
 
                     if (isLeft) {
-                        x.setRed(false);
+                        node.setRed(false);
                         parent = null;
                     } else {
                         parent.setRed(false);
@@ -181,8 +200,8 @@ public class RBTree<T extends Comparable<T>> {
                 parent.setRed(false);
                 uncle.setRed(false);
                 parent.getParent().setRed(true);
-                x = parent.getParent();
-                parent = x.getParent();
+                node = parent.getParent();
+                parent = node.getParent();
             }
         }
         getRoot().makeBlack();
@@ -288,9 +307,9 @@ public class RBTree<T extends Comparable<T>> {
     public static void main(String[] args) {
         RBTree<String> bst = new RBTree<String>();
         bst.addNode("d");
-        bst.addNode("d");
+//        bst.addNode("d");
         bst.addNode("c");
-        bst.addNode("c");
+//        bst.addNode("c");
         bst.addNode("b");
         bst.addNode("f");
 
