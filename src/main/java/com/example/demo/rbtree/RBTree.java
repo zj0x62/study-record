@@ -161,11 +161,19 @@ public class RBTree<T extends Comparable<T>> {
         return dataRoot;
     }
 
+    /**
+     * 插入修复操作分为以下的三种情况，而且新插入的节点的父节点都是红色的：
+     * 1.叔叔节点也为红色。
+     * 2.叔叔节点为空，且祖父节点、父节点和新节点处于一条斜线上。
+     * 3.叔叔节点为空，且祖父节点、父节点和新节点不处于一条斜线上。
+     * @param node
+     */
     private void fixInsert(RBTreeNode<T> node) {
         RBTreeNode<T> parent = node.getParent();
         while (parent != null && parent.isRed()) {
             RBTreeNode<T> uncle = getUncle(node);
-            if (uncle == null) {
+            // 叔父节点为空或者为黑色，要进行旋转和颜色修复
+            if (uncle == null || uncle.isBlack()) {
                 RBTreeNode<T> ancestor = parent.getParent();
                 if (parent == ancestor.getLeft()) {
                     boolean isRight = node == parent.getRight();
@@ -269,6 +277,41 @@ public class RBTree<T extends Comparable<T>> {
             }
             setParent(left, parent);
         }
+    }
+
+    public T remove(T value) {
+        RBTreeNode<T> dataRoot = getRoot();
+        RBTreeNode<T> parent = root;
+
+        while (dataRoot != null) {
+            int cmp = dataRoot.getValue().compareTo(value);
+            if (cmp < 0) {
+                parent = dataRoot;
+                dataRoot = dataRoot.getRight();
+            } else if (cmp > 0) {
+                parent = dataRoot;
+                dataRoot = dataRoot.getLeft();
+            } else {
+                if (dataRoot.getRight() != null) {
+
+                }
+            }
+        }
+
+        return null;
+    }
+
+    private RBTreeNode<T> removeMin(RBTreeNode<T> node) {
+        RBTreeNode<T> parent = node;
+        while (node != null && node.getLeft() != null) {
+            parent = node;
+            node = node.getLeft();
+        }
+        if (parent == node) {
+            return node;
+        }
+
+        return null;
     }
 
     public void printTree(RBTreeNode<T> root){
