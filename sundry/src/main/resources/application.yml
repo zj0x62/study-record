@@ -1,0 +1,26 @@
+server:
+  port: 8999
+  contextPath : /kafka
+spring:
+  kafka:
+    bootstrap-servers: 10.23.11.180:9092,10.23.11.159:9092,10.23.11.220:9092
+    consumer:
+      group-id: allynav-wisdom-iot-test
+      enable-auto-commit: false
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+    producer:
+      retries: 1
+      batch-size: 16384
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+    listener:
+      type: batch
+      ack-mode: batch
+    properties:
+      max:
+        poll:
+          interval:
+            ms: 10000

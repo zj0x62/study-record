@@ -1,30 +1,16 @@
-package com.example.demo;
+package com.example.demo.util;
 
-import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.krysalis.barcode4j.BarcodeDimension;
 import org.krysalis.barcode4j.HumanReadablePlacement;
 import org.krysalis.barcode4j.impl.AbstractBarcodeBean;
-import org.krysalis.barcode4j.impl.HeightVariableBarcodeBean;
 import org.krysalis.barcode4j.impl.codabar.CodabarBean;
 import org.krysalis.barcode4j.impl.code128.Code128Bean;
 import org.krysalis.barcode4j.impl.code39.Code39Bean;
-import org.krysalis.barcode4j.impl.datamatrix.DataMatrixBean;
-import org.krysalis.barcode4j.impl.fourstate.RoyalMailCBCBean;
-import org.krysalis.barcode4j.impl.int2of5.Interleaved2Of5Bean;
-import org.krysalis.barcode4j.impl.pdf417.PDF417Bean;
-import org.krysalis.barcode4j.impl.postnet.POSTNETBean;
-import org.krysalis.barcode4j.impl.upcean.EAN13Bean;
-import org.krysalis.barcode4j.impl.upcean.UPCABean;
 import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
 import org.krysalis.barcode4j.tools.UnitConv;
-import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
-import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageOutputStream;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.Calendar;
 
 /**
  * @Author zhoujing
