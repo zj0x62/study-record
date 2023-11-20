@@ -6,6 +6,8 @@
     <modules>
         <module>thread</module>
         <module>sundry</module>
+        <module>springboot</module>
+        <module>aspect</module>
     </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
