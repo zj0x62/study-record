@@ -1,12 +1,13 @@
 package com.example.demo.lambda;
 
-import cn.hutool.core.lang.Assert;
-import jdk.nashorn.internal.runtime.JSONListAdapter;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /**
  * @Author: zhoujing
