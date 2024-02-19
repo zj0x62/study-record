@@ -10,6 +10,7 @@
         <module>aspect</module>
         <module>generics</module>
         <module>reflect</module>
+        <module>algo</module>
     </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>

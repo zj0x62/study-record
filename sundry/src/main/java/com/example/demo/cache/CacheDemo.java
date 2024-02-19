@@ -49,7 +49,7 @@ public class CacheDemo {
     }
 
     /**
-     * 显示清除缓存
+     * 显式清除缓存
      * @param id 用户id
      */
     public static void clearCache(Long id) {
