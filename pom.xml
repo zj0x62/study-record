@@ -11,6 +11,9 @@
         <module>generics</module>
         <module>reflect</module>
         <module>algo</module>
+        <module>design-pattern</module>
+        <module>design-pattern/factory-method</module>
+        <module>leaf</module>
     </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
