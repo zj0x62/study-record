@@ -14,8 +14,7 @@
         <module>design-pattern</module>
         <module>design-pattern/factory-method</module>
         <module>leaf</module>
-        <module>springboot-event</module>
-    </modules>
+	</modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -96,11 +95,11 @@
 		</dependency>
 
 		<!-- java 读取word文件里面的加颜色的字体（特殊字体）  -->
-		<dependency>
-			<groupId> e-iceblue </groupId>
-			<artifactId>spire.doc.free</artifactId>
-			<version>3.9.0</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId> e-iceblue </groupId>-->
+<!--			<artifactId>spire.doc.free</artifactId>-->
+<!--			<version>3.9.0</version>-->
+<!--		</dependency>-->
 
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
 		<dependency>
@@ -229,13 +228,13 @@
 	</dependencies>
 
 	<!-- java 读取word文件里面的加颜色的字体（特殊字体）  -->
-	<repositories>
-		<repository>
-			<id>com.e-iceblue</id>
-			<name>e-iceblue</name>
-			<url>http://repo.e-iceblue.com/nexus/content/groups/public/</url>
-		</repository>
-	</repositories>
+<!--	<repositories>-->
+<!--		<repository>-->
+<!--			<id>com.e-iceblue</id>-->
+<!--			<name>e-iceblue</name>-->
+<!--			<url>http://repo.e-iceblue.com/nexus/content/groups/public/</url>-->
+<!--		</repository>-->
+<!--	</repositories>-->
 
 
 

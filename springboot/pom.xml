@@ -15,6 +15,8 @@
         <module>advice</module>
         <module>bean2</module>
         <module>bean1</module>
+        <module>event</module>
+        <module>configure</module>
     </modules>
 
     <properties>
