@@ -16,6 +16,7 @@
         <module>leaf</module>
         <module>mybatis</module>
         <module>caffeine</module>
+        <module>threadlocal</module>
     </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
