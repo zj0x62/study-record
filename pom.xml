@@ -9,7 +9,7 @@
         <module>springboot</module>
         <module>aspect</module>
         <module>generics</module>
-        <module>reflect</module>
+        <module>reflection</module>
         <module>algo</module>
         <module>design-pattern</module>
         <module>leaf</module>

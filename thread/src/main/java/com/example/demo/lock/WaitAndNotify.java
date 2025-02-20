@@ -1,4 +1,4 @@
-package com.example.thread;
+package com.example.demo.lock;
 
 /**
  * @Author: zhoujing
