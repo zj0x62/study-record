@@ -17,6 +17,7 @@
         <module>bean1</module>
         <module>event</module>
         <module>configure</module>
+        <module>validator</module>
     </modules>
 
     <properties>
