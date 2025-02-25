@@ -52,6 +52,46 @@ public class ThreadTest {
         }
     }
 
+    @Test
+    public void blockedTest() {
+        for (int i = 0; i < 10; i++) {
+            blocked();
+            System.out.println("------------------");
+        }
+
+        // 输出有两种结果：1. a:RUNNABLE b:BLOCKED (一个线程已获得锁，另一个被阻塞（BLOCKED）)
+        //              2. a:RUNNABLE b:RUNNABLE (两个线程均未开始竞争锁，均处于 RUNNABLE 状态)
+    }
+
+    private void blocked() {
+        Thread a = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                testMethod();
+            }
+        }, "a");
+
+        Thread b = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                testMethod();
+            }
+        }, "b");
+
+        a.start();
+        b.start();
+        System.out.println(a.getName() + ":" + a.getState());
+        System.out.println(b.getName() + ":" + b.getState());
+    }
+
+    private synchronized void testMethod() {
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     static class TaskQueue {
         Queue<String> queue = new LinkedList<>();
 

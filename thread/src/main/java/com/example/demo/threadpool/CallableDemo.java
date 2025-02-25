@@ -6,6 +6,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.concurrent.FutureTask;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -18,7 +19,8 @@ public class CallableDemo {
 
     public static void main(String[] args) {
 //        taskExecute();
-        taskExecute2();
+//        taskExecute2();
+        taskExecute3();
     }
 
     public static void taskExecute() {
@@ -58,6 +60,38 @@ public class CallableDemo {
         for (int i = 1; i <= 6; i++) {
             Future<String> future = executor.submit(new CallableTask(i));
             list.add(future);
+        }
+
+        for (Future<String> future : list) {
+            try {
+                String s = future.get();
+                System.out.println(s);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            } catch (ExecutionException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        executor.shutdown();
+    }
+
+    public static void taskExecute3() {
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(
+                2,
+                4,
+                60,
+                TimeUnit.SECONDS,
+                new ArrayBlockingQueue<>(2)
+        );
+
+        // 将任务提交与结果获取分离，使线程池并行处理多个任务
+        List<FutureTask<String>> list = new ArrayList<>();
+        for (int i = 1; i <= 6; i++) {
+            // 使用FutureTask
+            FutureTask<String> futureTask = new FutureTask<>(new CallableTask(i));
+            executor.submit(futureTask);
+            list.add(futureTask);
         }
 
         for (Future<String> future : list) {

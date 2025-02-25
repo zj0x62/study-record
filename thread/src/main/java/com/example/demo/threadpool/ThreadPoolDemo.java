@@ -12,7 +12,12 @@ import java.util.concurrent.TimeUnit;
 /**
  * @Author: zhoujing
  * @Date: 2025/2/19 13:07
- * @Description:
+ * @Description: 线程池的状态：
+ *                  RUNNING：接收新任务并处理排队任务
+ *                  SHUTDOWN：不接受新任务，但处理排队任务
+ *                  STOP：不接受新任务，也不处理排队任务，并中断正在进行的任务
+ *                  TIDYING：所有任务都已终止，workerCount为0时，线程会转换到TIDYING状态，并将执行terminated()钩子方法
+ *                  TERMINATED：terminated()运行完成
  */
 public class ThreadPoolDemo {
 
@@ -27,6 +32,26 @@ public class ThreadPoolDemo {
                 Executors.defaultThreadFactory(),       // 线程工厂
                 new ThreadPoolExecutor.AbortPolicy()    // 拒绝策略
         );
+        executor.allowCoreThreadTimeOut(true);
+        executor.allowsCoreThreadTimeOut();
+
+        // 自定义线程池 重写terminated()方法
+        // 线程池关闭后, 会执行terminated()方法
+        ThreadPoolExecutor executor2 = new ThreadPoolExecutor(
+                5,                           // 核心线程数
+                10,                                     // 最大线程数
+                60L,                                    // 线程存活时间
+                TimeUnit.SECONDS,                       // 线程存活时间单位
+                new ArrayBlockingQueue<>(100),  // 阻塞队列
+                Executors.defaultThreadFactory(),       // 线程工厂
+                new ThreadPoolExecutor.AbortPolicy()    // 拒绝策略
+        ) {
+            @Override
+            protected void terminated() {
+                super.terminated();
+                System.out.println("执行 terminated() 方法");
+            }
+        };
 
         // 缓存线程池(允许的创建线程数量为Integer.MAX_VALUE, 可能会创建大量的线程, 从而导致OOM。)
         ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
