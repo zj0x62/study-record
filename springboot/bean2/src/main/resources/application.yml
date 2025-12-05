@@ -1,0 +1,5 @@
+bean-test:
+  # 是否开启线程池
+  name: bean-custom
+  # 队列最大长度
+  value: 22222222222

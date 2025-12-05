@@ -17,6 +17,7 @@
         <module>caffeine</module>
         <module>threadlocal</module>
         <module>netty</module>
+        <module>spring</module>
     </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
@@ -229,18 +230,6 @@
 			<!--            <version>4.12</version>-->
 		</dependency>
 	</dependencies>
-
-	<!-- java 读取word文件里面的加颜色的字体（特殊字体）  -->
-<!--	<repositories>-->
-<!--		<repository>-->
-<!--			<id>com.e-iceblue</id>-->
-<!--			<name>e-iceblue</name>-->
-<!--			<url>http://repo.e-iceblue.com/nexus/content/groups/public/</url>-->
-<!--		</repository>-->
-<!--	</repositories>-->
-
-
-
 
 	<build>
 		<plugins>
