@@ -10,7 +10,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>aspect</artifactId>
-
+    <packaging>pom</packaging>
+    <modules>
+        <module>aspect-01</module>
+        <module>aspect-02</module>
+    </modules>
 
 
     <dependencies>

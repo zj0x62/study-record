@@ -1,0 +1,5 @@
+server:
+  port: 12345
+#spring:
+#  aop:
+#    proxy-target-class: false # 关闭强制CGLIB，恢复默认规则（有接口用JDK）
